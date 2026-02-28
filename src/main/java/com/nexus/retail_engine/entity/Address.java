@@ -48,12 +48,8 @@ public class Address {
     // RELATIONSHIPS
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id") // Optional: only if this is a Customer address
-    private Customer customer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")   // Optional: only if this is a Seller address
-    private Seller seller;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // TIMESTAMPS
 

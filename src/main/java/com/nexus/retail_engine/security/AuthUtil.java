@@ -45,4 +45,22 @@ public class AuthUtil {
     }
 
 
+    public boolean isTokenValid(String token, User user) {
+        try {
+            final String username = getUsernameFromToken(token);
+            return (username.equals(user.getUsername()) && !isTokenExpired(token));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isTokenExpired(String token) {
+        Date expiration = Jwts.parser()
+                .verifyWith(getSecretKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getExpiration();
+        return expiration.before(new Date());
+    }
 }

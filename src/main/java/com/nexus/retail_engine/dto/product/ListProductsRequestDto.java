@@ -1,7 +1,6 @@
-package com.nexus.retail_engine.dto;
+package com.nexus.retail_engine.dto.product;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

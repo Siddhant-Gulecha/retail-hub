@@ -1,9 +1,9 @@
 package com.nexus.retail_engine.controller;
 
-import com.nexus.retail_engine.dto.LoginRequestDto;
-import com.nexus.retail_engine.dto.LoginResponseDto;
-import com.nexus.retail_engine.dto.SignupRequestDto;
-import com.nexus.retail_engine.dto.SignupResponsetDto;
+import com.nexus.retail_engine.dto.auth.LoginRequestDto;
+import com.nexus.retail_engine.dto.auth.LoginResponseDto;
+import com.nexus.retail_engine.dto.auth.SignupRequestDto;
+import com.nexus.retail_engine.dto.auth.SignupResponsetDto;
 import com.nexus.retail_engine.security.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

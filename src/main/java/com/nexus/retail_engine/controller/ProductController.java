@@ -1,6 +1,6 @@
 package com.nexus.retail_engine.controller;
 
-import com.nexus.retail_engine.dto.ListProductsResponseDto;
+import com.nexus.retail_engine.dto.product.ListProductsResponseDto;
 import com.nexus.retail_engine.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

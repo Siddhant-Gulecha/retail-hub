@@ -1,4 +1,4 @@
-package com.nexus.retail_engine.dto;
+package com.nexus.retail_engine.dto.auth;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequestDto {
-    String username;
-    String password;
+public class LoginResponseDto {
+    String jwt;
+    Long userId;
 }

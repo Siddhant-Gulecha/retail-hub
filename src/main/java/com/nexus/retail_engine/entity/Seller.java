@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Seller {
 
     // DATA
@@ -44,9 +46,6 @@ public class Seller {
     @OneToMany(mappedBy = "seller", orphanRemoval = true, cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Product> products;
-
-    @OneToMany(mappedBy = "seller")
-    private List<Address> addresses;
 
     // TIMESTAMPS
 

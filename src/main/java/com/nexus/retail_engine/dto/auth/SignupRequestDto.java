@@ -1,4 +1,4 @@
-package com.nexus.retail_engine.dto;
+package com.nexus.retail_engine.dto.auth;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignupResponsetDto {
-    private String jwt;
-    private Long userId;
+public class SignupRequestDto {
+    String username;
+    String password;
+    String name;
 }

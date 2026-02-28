@@ -4,8 +4,8 @@ TRUNCATE TABLE app_user RESTART IDENTITY CASCADE;
 
 -- 1. NOW INSERT USERS
 INSERT INTO app_user (username, password) VALUES
-                                              ('john_buyer', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOnu'),
-                                              ('tech_vendor', '$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRzgVymGe07xd00DMxs.TVuHOnu');
+                                              ('john_buyer', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG'),
+                                              ('tech_vendor', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG');
 
 -- 2. INSERT CUSTOMER (Linked to User ID 1)
 -- Note: Reusing 'user_id' as the column name since we are using @MapsId
@@ -24,11 +24,11 @@ INSERT INTO products (name, description, price, currency, seller_id, created_at)
 
 -- 5. INSERT ADDRESSES
 -- Customer Address
-INSERT INTO addresses (address_line, city, state, pincode, customer_id, created_at) VALUES
+INSERT INTO addresses (address_line, city, state, pincode, user_id, created_at) VALUES
     ('123 Maple Avenue', 'New York', 'NY', '10001', 1, CURRENT_TIMESTAMP);
 
 -- Seller Address
-INSERT INTO addresses (address_line, city, state, pincode, seller_id, created_at) VALUES
+INSERT INTO addresses (address_line, city, state, pincode, user_id, created_at) VALUES
     ('Warehouse 4, Industrial Park', 'Austin', 'TX', '73301', 2, CURRENT_TIMESTAMP);
 
 -- 6. INSERT AN ORDER (For Customer 1)

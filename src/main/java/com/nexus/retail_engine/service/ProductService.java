@@ -1,15 +1,13 @@
 package com.nexus.retail_engine.service;
 
 
-import com.nexus.retail_engine.dto.ListProductsResponseDto;
-import com.nexus.retail_engine.dto.ProductResponseDto;
-import com.nexus.retail_engine.entity.Product;
+import com.nexus.retail_engine.dto.product.ListProductsResponseDto;
+import com.nexus.retail_engine.dto.product.ProductResponseDto;
 import com.nexus.retail_engine.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

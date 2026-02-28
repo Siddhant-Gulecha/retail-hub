@@ -1,9 +1,9 @@
 package com.nexus.retail_engine.security;
 
-import com.nexus.retail_engine.dto.LoginRequestDto;
-import com.nexus.retail_engine.dto.LoginResponseDto;
-import com.nexus.retail_engine.dto.SignupRequestDto;
-import com.nexus.retail_engine.dto.SignupResponsetDto;
+import com.nexus.retail_engine.dto.auth.LoginRequestDto;
+import com.nexus.retail_engine.dto.auth.LoginResponseDto;
+import com.nexus.retail_engine.dto.auth.SignupRequestDto;
+import com.nexus.retail_engine.dto.auth.SignupResponsetDto;
 import com.nexus.retail_engine.entity.User;
 import com.nexus.retail_engine.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
