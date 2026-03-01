@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetAllAddressesResponseDto {
-    List<AddressResponseDto> addresses;
+public class AddressResponseDto {
+    private Long id;
+    private String addressLine;
+    private String city;
+    private String state;
+    private String pincode;
 }

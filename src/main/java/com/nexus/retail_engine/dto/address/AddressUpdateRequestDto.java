@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressDto {
-    private Long id;
+public class AddressUpdateRequestDto {
+
     private String addressLine;
     private String city;
     private String state;

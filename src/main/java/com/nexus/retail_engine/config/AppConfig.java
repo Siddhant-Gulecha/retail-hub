@@ -1,5 +1,6 @@
 package com.nexus.retail_engine.config;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +15,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AppConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
-        return new ModelMapper();
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+                .setSkipNullEnabled(true)
+                .setPropertyCondition(Conditions.isNotNull());
+        return modelMapper;
     }
 
     @Bean
