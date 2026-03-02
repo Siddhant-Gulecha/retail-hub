@@ -1,6 +1,8 @@
 package com.nexus.retail_engine.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -29,12 +31,17 @@ public class Seller {
     @Column(nullable = false, unique = true, updatable = false, length = 100)
     private String sellerName; // company name
 
-    @Column(nullable = false, unique = true, length = 254)
-    private String email;
-
-    @Column(length = 10)
+    @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Invalid phone number")
+    @Column(length = 15)
     private String phoneNumber;
 
+    @NotBlank(message = "GSTIN is mandatory")
+    @Pattern(
+            regexp = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$",
+            message = "Invalid GSTIN format"
+    )
+    @Column(name = "gstin", unique = true, length = 15)
+    private String gstin;
 
     // RELATIONSHIPS
 

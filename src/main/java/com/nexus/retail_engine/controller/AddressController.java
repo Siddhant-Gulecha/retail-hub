@@ -4,15 +4,15 @@ import com.nexus.retail_engine.dto.address.*;
 import com.nexus.retail_engine.service.AddressService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.nio.file.AccessDeniedException;
 
 @RestController
 @RequestMapping("/address")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('CUSTOMER') || hasRole('SELLER')")
 public class AddressController {
 
     private final AddressService addressService;

@@ -40,9 +40,11 @@ public class AuthService {
             throw new Exception("User already exists");
         }
         user = User.builder()
-                        .username(signupRequestDto.getUsername())
-                        .password(passwordEncoder.encode(signupRequestDto.getPassword()))
-                        .build();
+                .username(signupRequestDto.getUsername())
+                .password(passwordEncoder.encode(signupRequestDto.getPassword()))
+                .email(signupRequestDto.getEmail())
+                //.roles(new HashSet<>(signupRequestDto.getRoles())) // now done by registering at separate endpoints
+                .build();
         user = userRepository.save(user);
         String token = authUtil.generateAccessToken(user);
         return new SignupResponsetDto(token, user.getId());

@@ -28,22 +28,13 @@ public class Customer {
     private Long id;
 
     @NotBlank
-    @Size(min = 3, max = 50)
-    @Column(nullable = false, unique = true, updatable = false)
-    private String userName;
-
-    @NotBlank
     @Size(max = 100)
     @Column(nullable = false)
     private String firstName;
 
     @Size(max = 100)
-    private String secondName;
+    private String lastName;
 
-    @Email(message = "Please provide a valid email address")
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 254)
-    private String email;
 
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Invalid phone number")
     @Column(length = 15)

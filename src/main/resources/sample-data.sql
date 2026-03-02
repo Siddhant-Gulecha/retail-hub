@@ -3,19 +3,21 @@
 TRUNCATE TABLE app_user RESTART IDENTITY CASCADE;
 
 -- 1. NOW INSERT USERS
-INSERT INTO app_user (username, password) VALUES
-                                              ('john_buyer', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG'),
-                                              ('tech_vendor', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG');
+INSERT INTO app_user (username, password, email, created_at) VALUES
+                                              ('john_buyer', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG', 'john@example.com', CURRENT_TIMESTAMP),
+                                              ('tech_vendor', '$2a$10$agAuzZIlfR6ko5fDwE4qFeMEABKMnQPnl9bm/zs8am70x9384fFVG', 'sales@nexus.com', CURRENT_TIMESTAMP);
 
 -- 2. INSERT CUSTOMER (Linked to User ID 1)
--- Note: Reusing 'user_id' as the column name since we are using @MapsId
-INSERT INTO customers (id, user_name, first_name, second_name, email, phone_number, created_at) VALUES
-    (1, 'john_buyer', 'John', 'Doe', 'john@example.com', '1234567890', CURRENT_TIMESTAMP);
+INSERT INTO customers (id, first_name, last_name, phone_number, created_at) VALUES
+    (1,  'John', 'Doe', '1234567890', CURRENT_TIMESTAMP);
 
 -- 3. INSERT SELLER (Linked to User ID 2)
-INSERT INTO seller (id, seller_name, email, phone_number, created_at) VALUES
-    (2, 'Nexus Electronics', 'sales@nexus.com', '9876543210', CURRENT_TIMESTAMP);
+INSERT INTO seller (id, seller_name, phone_number, gstin, created_at) VALUES
+    (2, 'Nexus Electronics', '9876543210', '27AAAAA0000A1Z5', CURRENT_TIMESTAMP);
 
+INSERT INTO user_roles (user_id, role) VALUES
+                                            (1, 'CUSTOMER'),
+                                            (2, 'SELLER');
 
 -- 4. INSERT PRODUCTS (Owned by Seller ID 2)
 INSERT INTO products (name, description, price, currency, seller_id, created_at) VALUES
