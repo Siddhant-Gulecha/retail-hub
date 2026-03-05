@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/seller")
-@PreAuthorize("hasRole('SELLER') || hasRole('ADMIN')")
 public class SellerController {
     private final SellerService sellerService;
 

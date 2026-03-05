@@ -9,9 +9,9 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class AddressService {
     // READ ALL
 
     @Transactional
+    @PreAuthorize("hasAuthority('address:read')")
     public GetAllAddressesResponseDto getAllAddresses(){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -42,6 +43,7 @@ public class AddressService {
     // READ ONE
 
     @Transactional
+    @PreAuthorize("hasAuthority('address:read')")
     public AddressResponseDto getAddressByid(Long id) throws Exception {
         Address address = addressRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         if(address.getUser().getId() != id){
@@ -55,6 +57,7 @@ public class AddressService {
     // CREATE
 
     @Transactional
+    @PreAuthorize("hasAuthority('address:create')")
     public AddressCreateResponseDto createAddress(AddressCreateRequestDto addressCreateRequestDto){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -74,6 +77,7 @@ public class AddressService {
     // UPDATE
 
     @Transactional
+    @PreAuthorize("hasAuthority('address:update')")
     public AddressResponseDto updateAddress(Long id, AddressUpdateRequestDto addressUpdateRequestDto) throws AccessDeniedException {
         Address existingAddress = addressRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Address not found"));
@@ -93,7 +97,8 @@ public class AddressService {
     // DELETE
 
     @Transactional
-    public void removeAddress(Long id) throws Exception {
+    @PreAuthorize("hasAuthority('address:delete')")
+    public void deleteAddress(Long id) throws Exception {
         Address address = addressRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Address with ID " + id + " not found"));
 
         if (address.getUser().getId() != id) {

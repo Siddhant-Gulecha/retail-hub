@@ -1,0 +1,35 @@
+info:
+  name: login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "sid",
+        "password": "pass"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        const token = data.jwt;
+
+        if (token) {
+            bru.setVar("jwt_token", token);
+            console.log("JWT saved to retail-engine collection variables!");
+        } else {
+            console.error("JWT not found in response");
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

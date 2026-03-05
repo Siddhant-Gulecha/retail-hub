@@ -1,0 +1,23 @@
+info:
+  name: registerAsASeller
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/seller/registerAsSeller"
+  body:
+    type: json
+    data: |-
+      {
+        "sellerName": "SidBusiness",
+        "phoneNumber": "1234567890",
+        "gstin": "27AAAAA0000A1Z6"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

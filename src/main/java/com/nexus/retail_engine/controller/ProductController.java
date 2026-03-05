@@ -3,17 +3,16 @@ package com.nexus.retail_engine.controller;
 import com.nexus.retail_engine.dto.product.ListProductsResponseDto;
 import com.nexus.retail_engine.dto.product.ProductCreateRequestDto;
 import com.nexus.retail_engine.dto.product.ProductResponseDto;
+import com.nexus.retail_engine.dto.product.ProductUpdateRequestDto;
 import com.nexus.retail_engine.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.nio.file.AccessDeniedException;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
-@PreAuthorize("hasRole('SELLER') || hasRole('ADMIN')")
 public class ProductController {
 
     private final ProductService productService;
@@ -31,6 +30,18 @@ public class ProductController {
     @PostMapping("/create")
     public ResponseEntity<Long> createProduct(@RequestBody ProductCreateRequestDto productCreateRequestDto) throws AccessDeniedException {
         return ResponseEntity.ok(productService.createProduct(productCreateRequestDto));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateProduct(@PathVariable Long id, @RequestBody ProductUpdateRequestDto productUpdateRequestDto) throws AccessDeniedException {
+        productService.updateProduct(id, productUpdateRequestDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(Long id) throws AccessDeniedException {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 
 

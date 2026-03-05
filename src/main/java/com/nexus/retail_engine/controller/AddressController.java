@@ -5,14 +5,12 @@ import com.nexus.retail_engine.service.AddressService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.nio.file.AccessDeniedException;
 
 @RestController
 @RequestMapping("/address")
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('CUSTOMER') || hasRole('SELLER')")
 public class AddressController {
 
     private final AddressService addressService;
@@ -49,7 +47,7 @@ public class AddressController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAddress(@PathVariable Long id) throws Exception {
-        addressService.removeAddress(id);
+        addressService.deleteAddress(id);
         return ResponseEntity.noContent().build();
     }
 

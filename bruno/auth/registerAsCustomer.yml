@@ -1,0 +1,23 @@
+info:
+  name: registerAsCustomer
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/customer/registerAsCustomer"
+  body:
+    type: json
+    data: |-
+      {
+        "firstName": "Siddhant",
+        "lastName": "Gulecha",
+        "phoneNumber": "1234567890"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

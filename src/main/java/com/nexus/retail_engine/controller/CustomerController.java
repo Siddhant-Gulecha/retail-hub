@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController @RequiredArgsConstructor
 @RequestMapping("/customer")
-@PreAuthorize("hasRole('CUSTOMER') || hasRole('ADMIN')")
 public class CustomerController {
 
     private final CustomerService customerService;

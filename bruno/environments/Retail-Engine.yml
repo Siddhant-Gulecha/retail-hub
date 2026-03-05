@@ -1,0 +1,6 @@
+name: Retail-Engine
+variables:
+  - name: base_url
+    value: http://localhost:8080/api
+  - name: jwt_token
+    value: ""
